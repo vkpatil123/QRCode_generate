@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    /* General Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Container Styling */
+    .container {
+        margin: 80px auto;
+        padding: 30px;
+        width: 440px;
+        background: linear-gradient(145deg, #ffffff, #e6e6e6);
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    /* Hover Effect */
+    .container:hover {
+        transform: scale(1.05);
+    }
+
+    /* Heading Styling */
+    .heading p {
+        background: #00d4ff;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        border-radius: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Input Styling */
+    .input-container {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .input {
+        padding: 12px;
+        width: 100%;
+        border: 2px solid #ddd;
+        border-radius: 25px;
+        outline: none;
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+    }
+
+    .input:focus {
+        border-color: #00d4ff;
+        box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    }
+
+    /* QR Image Styling */
+    .img {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img img {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Button Styling */
+    .btn {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .a {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 15px 25px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .a:hover {
+        background: #0056b3;
+        transform: translateY(-3px);
+    }
+
+    .a:active {
+        transform: translateY(1px);
+    }
+</style>
+    <title>Generate QR Code</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="heading">
+             <p>Generate QR Code</p>
+        </div>
+        <div class="input-container">
+            <input type="text" id="ip1" class="input"  placeholder="Enter value here">
+        </div>
+        <div class="img">
+            <img id="img" alt="QR Code">
+        </div>
+        <div class="btn">
+            <button class="a" onclick="generateQR()">Generate QR</button>
+        </div>
+    </div>
+    
+    <script>
+        const input1 = document.getElementById("ip1");
+        const img = document.getElementById("img");
+
+        function generateQR() {
+            if (input1.value.trim() === "") {
+                alert("Please enter a value!");
+                return;
+            }
+            img.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURIComponent(input1.value);
+            alert("QR code generated");
+        }
+    </script>
+    
+</body>
+</html>
